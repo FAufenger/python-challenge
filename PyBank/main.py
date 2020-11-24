@@ -8,27 +8,34 @@ import csv
 #         txt_file.write(ouput)
 
 #set path for the file
-csvpath = os.path.join("resources", "budget_data.csv")
-total = 0
-months = 0
+csvpath = os.path.join("resources", "pybank_budget_data.csv")
+total_months = 0
+months_sum = 0
 greatest_inc = {"month": "", "value": 0}
-greatest_dec = {}
+greatest_dec = {"month": "", "value": 0}
 
 
 with open(csvpath) as csvfile: 
     csvreader = csv.reader(csvfile, delimiter=",")
-
     for row in csvreader:
-        total = total + row[2]
-        months += 1
-        if greatest_inc["value"] < row[2]:
+        total_months = total_months + row[1]
+        months_sum += 1
+        average_change = months_sum / total_months
+
+        if greatest_inc["value"] > row[1]:
             greatest_inc["month"] = row[0]
             greatest_inc["value"] = row[2]
+        if greatest_dec["value"] < row[2]:
+            greatest_dec["month"] = row[0]
+            greatest_dec["value"] = row[2]
 
 
 output = (
-    f"Total: {total}\n",
-    f"  \n"
+    f"Total Months: {total_months}\n",
+    f"Total: {months_sum}\n",
+    f"Average Change: ${average_change}\n",
+    f"Greatest Increase in Profits: {A}\n",
+    f"Greatest Decrease in Profits: {B}\n"
 )
 
 with open("analysis/output.txt", "w") as txt_file:
