@@ -20,7 +20,6 @@ with open(csvpath) as csvfile:
     for row in csvreader:
         total_months = total_months + (row[0])
         months_sum += 1
-        average_change = months_sum / total_months
 
         if greatest_inc["value"] > row[1]:
             greatest_inc["month"] = row[0]
@@ -28,6 +27,8 @@ with open(csvpath) as csvfile:
         if greatest_dec["value"] < row[1]:
             greatest_dec["month"] = row[0]
             greatest_dec["value"] = row[1]
+
+        average_change = (greatest_dec - greatest_increase) / total_months
 
 
 output = (
