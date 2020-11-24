@@ -28,7 +28,7 @@ with open(csvpath) as csvfile:
             greatest_dec["month"] = row[0]
             greatest_dec["value"] = row[1]
 
-        average_change = (greatest_dec - greatest_increase) / total_months
+        average_change = (greatest_dec - greatest_inc) / total_months
 
 
 output = (
