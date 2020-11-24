@@ -18,7 +18,7 @@ greatest_dec = {"month": "", "value": 0}
 with open(csvpath) as csvfile: 
     csvreader = csv.reader(csvfile, delimiter=",")
     for row in csvreader:
-        total_months = total_months + row[0]
+        total_months = total_months + (row[0])
         months_sum += 1
         average_change = months_sum / total_months
 
@@ -34,8 +34,8 @@ output = (
     f"Total Months: {total_months}\n",
     f"Total: {months_sum}\n",
     f"Average Change: ${average_change}\n",
-    f"Greatest Increase in Profits: {A}\n",
-    f"Greatest Decrease in Profits: {B}\n"
+    f"Greatest Increase in Profits: {}\n",
+    f"Greatest Decrease in Profits: {}\n"
 )
 
 with open("analysis/output.txt", "w") as txt_file:
