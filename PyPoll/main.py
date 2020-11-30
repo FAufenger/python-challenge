@@ -32,6 +32,7 @@ with open(csvpath) as csvfile:
 
         #Winner of popular vote
         winner = #candidate votes > other candidates then
+ 
 
 output = (
     f"Election Results\n",
@@ -40,7 +41,8 @@ output = (
     f"----------------------------------\n",
     f"{candidate_names}: {percent_votes} ({candidate_votes})\n",
     f"----------------------------------\n",
-    f"winner: {winner}"
+    f"winner: {winner}\n",
+    f"----------------------------------\n"
 )
 
 with open("analysis/output.txt", "w") as txt_file:
