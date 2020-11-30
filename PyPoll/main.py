@@ -21,16 +21,17 @@ with open(csvpath) as csvfile:
         total_votes = total_votes + row[0]
 
         #List of all canadites
-        candidate_names = 
+        candidate_names = #unique values in first column .. maybe .. 
+        #if (value <> vlaue then...cell value = cell value.. )
 
         #Total number of votes each candadate won
-        candidate_votes = 
+        candidate_votes = #if unique candidate then sum column 2
 
         #Percentage of votes each candidate received
-        percent_votes = 
+        percent_votes = (candidate_votes / total_votes)"%"
 
         #Winner of popular vote
-        winner = 
+        winner = #candidate votes > other candidates then
 
 output = (
     f"Election Results\n",
