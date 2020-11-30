@@ -10,7 +10,7 @@ import csv
 #set path for the file
 csvpath = os.path.join("resources", "pybank_budget_data.csv")
 total_months = 0
-months_sum = 0
+net_total = 0
 greatest_inc = {"month": "", "value": 0}
 greatest_dec = {"month": "", "value": 0}
 
@@ -18,9 +18,14 @@ greatest_dec = {"month": "", "value": 0}
 with open(csvpath) as csvfile: 
     csvreader = csv.reader(csvfile, delimiter=",")
     for row in csvreader:
-        total_months = total_months + (row[0])
-        months_sum += 1
 
+        #Total number of months
+        total_months = total_months + (row[0])
+
+        #Net profits (Sum of all profits and loses)
+        net_total += 1
+
+        #Changes in profit
         if greatest_inc["value"] > row[1]:
             greatest_inc["month"] = row[0]
             greatest_inc["value"] = row[1]
@@ -28,12 +33,13 @@ with open(csvpath) as csvfile:
             greatest_dec["month"] = row[0]
             greatest_dec["value"] = row[1]
 
+        #average changes for entire period
         average_change = (greatest_dec - greatest_inc) / total_months
 
 
 output = (
     f"Total Months: {total_months}\n",
-    f"Total: {months_sum}\n",
+    f"Total: {net_total}\n",
     f"Average Change: ${average_change}\n",
     f"Greatest Increase in Profits: {}\n",
     f"Greatest Decrease in Profits: {}\n"
