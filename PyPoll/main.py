@@ -25,7 +25,7 @@ with open(csvpath) as csvfile:
 
         #Total number of votes each candadate won
         candidate_votes = 
-        
+
         #Percentage of votes each candidate received
         percent_votes = 
 
@@ -34,12 +34,12 @@ with open(csvpath) as csvfile:
 
 output = (
     f"Election Results\n",
-    f"----------------------------------",
+    f"----------------------------------\n",
     f"Total Votes: {total_votes}\n",
-    f"----------------------------------",
+    f"----------------------------------\n",
     f"{candidate_names}: {percent_votes} ({candidate_votes})\n",
-    f"----------------------------------",
-    f"winner: {winner}\n"
+    f"----------------------------------\n",
+    f"winner: {winner}"
 )
 
 with open("analysis/output.txt", "w") as txt_file:

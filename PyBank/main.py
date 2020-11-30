@@ -36,10 +36,12 @@ with open(csvpath) as csvfile:
         #average changes for entire period
         average_change = (greatest_dec - greatest_inc) / total_months
 
+        #Add rows for month count
+        row = row + 1
 
 output = (
-    f"Financial Analysis"
-    f"----------------------------------",
+    f"Financial Analysis\n",
+    f"----------------------------------\n",
     f"Total Months: {total_months}\n",
     f"Total: {net_total}\n",
     f"Average Change: ${average_change}\n",
