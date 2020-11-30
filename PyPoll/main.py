@@ -18,16 +18,16 @@ with open(csvpath) as csvfile:
     for row in csvreader:
 
         #Total number of votes cast
-        total_votes = 
+        total_votes = total_votes + row[0]
 
         #List of all canadites
         candidate_names = 
 
-        #Percentage of votes each candidate received
-        percent_votes = 
-
         #Total number of votes each candadate won
         candidate_votes = 
+        
+        #Percentage of votes each candidate received
+        percent_votes = 
 
         #Winner of popular vote
         winner = 
