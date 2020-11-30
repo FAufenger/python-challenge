@@ -38,11 +38,13 @@ with open(csvpath) as csvfile:
 
 
 output = (
+    f"Financial Analysis"
+    f"----------------------------------",
     f"Total Months: {total_months}\n",
     f"Total: {net_total}\n",
     f"Average Change: ${average_change}\n",
-    f"Greatest Increase in Profits: {}\n",
-    f"Greatest Decrease in Profits: {}\n"
+    f"Greatest Increase in Profits: {greatest_inc}\n",
+    f"Greatest Decrease in Profits: {greatest_dec}\n"
 )
 
 with open("analysis/output.txt", "w") as txt_file:
