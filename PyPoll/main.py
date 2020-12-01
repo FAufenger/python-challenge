@@ -35,13 +35,13 @@ with open(csvpath) as csvfile:
  
 
 output = (
-    f"Election Results\n",
-    f"----------------------------------\n",
-    f"Total Votes: {total_votes}\n",
-    f"----------------------------------\n",
-    f"{#candidate_names}: {percent_votes} ({candidate_votes})\n",
-    f"----------------------------------\n",
-    f"winner: {winner}\n",
+    f"Election Results\n"
+    f"----------------------------------\n"
+    f"Total Votes: {total_votes}\n"
+    f"----------------------------------\n"
+    f"{ candidate_votes['candidate_names']}: {percent_votes}%  ({candidate_votes['candidate_names']}) \n")\
+    f"----------------------------------\n"
+    f"winner: {winner}\n"
     f"----------------------------------\n"
 )
 
