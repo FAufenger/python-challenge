@@ -14,6 +14,8 @@ winner = str() #or ""
 
 with open(csvpath) as csvfile: 
     csvreader = csv.reader(csvfile, delimiter=",")
+    header = next(csvreader)
+
     for row in csvreader:
 
         #Total number of votes cast
@@ -27,22 +29,33 @@ with open(csvpath) as csvfile:
         else:
             candidate_votes[row[2]] += 1
 
-        #Percentage of votes each candidate received
-        percent_votes = (candidate_votes / total_votes)
+    #Percentage of votes each candidate received
 
-        #Winner of popular vote
-        winner = #candidate votes > other candidates then
- 
+
+    percent_vote1 = round((int(candidate_votes['Khan']) / int(total_votes)*100),2)
+    percent_vote2 = round((int(candidate_votes['Correy']) / int(total_votes)*100),2)
+    percent_vote3 = round((int(candidate_votes['Li']) / int(total_votes)*100),2)
+    percent_vote4 = round((int(candidate_votes["O'Tooley"]) / int(total_votes)*100),2)
+
+
+    #Winner of popular vote
+    #winner = #candidate votes > other candidates then
+
 
 output = (
     f"Election Results\n"
     f"----------------------------------\n"
     f"Total Votes: {total_votes}\n"
     f"----------------------------------\n"
-    f"{ candidate_votes['candidate_names']}: {percent_votes}%  ({candidate_votes['candidate_names']}) \n")\
+    f"{candidate_votes}\n"
     f"----------------------------------\n"
-    f"winner: {winner}\n"
-    f"----------------------------------\n"
+    f"{percent_vote1}%\n"
+    f"{percent_vote2}%\n"
+    f"{percent_vote3}%\n"
+    f"{percent_vote4}%\n"
+    
+ #    f"winner: {winner}\n"
+    f"----------------------------------"
 )
 
 with open("analysis/output.txt", "w") as txt_file:
