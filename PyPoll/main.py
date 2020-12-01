@@ -24,14 +24,11 @@ with open(csvpath) as csvfile:
         #List of all unique canadites and total votes for each candidate
         if row[2] not in candidate_names:
             candidate_names.append(row[2])
-            candidate_votes[row[2]] = 1 
+            candidate_votes[row[2]] = 0
             
-        else:
-            candidate_votes[row[2]] += 1
+        candidate_votes[row[2]] += 1
 
     #Percentage of votes each candidate received
-
-
     percent_vote1 = round((int(candidate_votes['Khan']) / int(total_votes)*100),2)
     percent_vote2 = round((int(candidate_votes['Correy']) / int(total_votes)*100),2)
     percent_vote3 = round((int(candidate_votes['Li']) / int(total_votes)*100),2)
@@ -60,3 +57,6 @@ output = (
 
 with open("analysis/output.txt", "w") as txt_file:
     txt_file.write(output)
+
+    for candidate in candidate_votes
+        
