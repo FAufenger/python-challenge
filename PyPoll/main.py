@@ -2,7 +2,6 @@
 import os
 import csv
 import operator
-from collections import defaultdict
 
 #set path for the file
 csvpath = os.path.join("resources", "pypoll_election_data.csv")
@@ -17,8 +16,7 @@ candidate3 = []
 candidate4 = []
 winner = str() #or ""
 winner_name = []
-cancan_dic = {}
-combined_values = defaultdict(list)
+can_per_dic = {}
 
 with open(csvpath) as csvfile: 
     csvreader = csv.reader(csvfile, delimiter=",")
@@ -38,14 +36,7 @@ with open(csvpath) as csvfile:
 
         #Add total of votes to dictionary keys (unique candidate names)
         candidate_name_and_votes_dic[candidate_data[2]] += 1
-
-
-#for key in candidate_name_and_votes_dic.values():
-
-#   if key in candidate_name_and_votes_dic
-#        candidate_name_and_votes_dic.append()
-
-#candidate_name_votes_percent_dic = candidate_name_and_votes_dic.update((x, y / (total_votes)*100)) for x, y in candidate_name_and_votes_dic.items())
+        
 
 
 #Percentage of votes each candidate received
@@ -82,25 +73,24 @@ output = (
     f"----------------------------------"
 )
 
-cancan_dic = dict(candidate_name_and_votes_dic)
 
-for key in cancan_dic: 
-    cancan_dic[key] = f"{round(((cancan_dic[key] / (total_votes))*100),2)} %" 
+#Optinal way to attempt to combine dictionaries
+    #can_per_dic = dict(candidate_name_and_votes_dic)
+
+    #for key in can_per_dic: 
+    #    can_per_dic[key] = f"{round(((can_per_dic[key] / (total_votes))*100),2)} %" 
 
 
-for i in (cancan_dic, candidate_name_and_votes_dic):
-    for key, value in i.items():
-        combined_values[key].append(value)
+    #for i in (can_per_dic, candidate_name_and_votes_dic):
+    #    for key, value in i.items():
+    #        combined_values[key].append(value)
 
-print(combined_values)
-#print(combined_values)
-#print(candidate_name_and_votes_dic)
-#for i in candidate_name_votes_percent_dic.keys():
-#    print('{} : {}\n'.format(i,candidate_name_votes_percent_dic.get(i)))
+#Other ways to print dictionary w/0 "" and , 
+    #for i in candidate_name_votes_percent_dic.keys():
+    #   print('{} : {}\n'.format(i,candidate_name_votes_percent_dic.get(i)))
 
-#print('\n'.join("{}: {}".format(k, v) for k, v in candidate_name_votes_percent_dic.items()))
+    #print('\n'.join("{}: {}".format(k, v) for k, v in candidate_name_votes_percent_dic.items()))
 
 with open("analysis/output.txt", "w") as txt_file:
     txt_file.write(output)
 
-    #for candidate in candidate_votes
