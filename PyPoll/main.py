@@ -75,9 +75,12 @@ output = (
     f"----------------------------------\n"    
     f"Winner: {winner_name} \n"
     f"----------------------------------"
-    
 )
 
+#for i in candidate_name_votes_percent_dic.keys():
+#    print('{} : {}\n'.format(i,candidate_name_votes_percent_dic.get(i)))
+
+#print('\n'.join("{}: {}".format(k, v) for k, v in candidate_name_votes_percent_dic.items()))
 
 with open("analysis/output.txt", "w") as txt_file:
     txt_file.write(output)
