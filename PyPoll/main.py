@@ -10,10 +10,10 @@ candidate_names = []
 percent_votes = 0
 candidate_name_and_votes_dic = {}
 candidate_name_votes_percent_dic = {}
-candidate1 = {}
-candidate2 = {}
-candidate3 = {}
-candidate4 = {}
+candidate1 = []
+candidate2 = []
+candidate3 = []
+candidate4 = []
 winner = str() #or ""
 winner_name = []
 
@@ -35,32 +35,34 @@ with open(csvpath) as csvfile:
 
         #Add total of votes to dictionary keys (unique candidate names)
         candidate_name_and_votes_dic[candidate_data[2]] += 1
-      
 
-    #Percentage of votes each candidate received
-    percent_vote1 = f"{round(((candidate_name_and_votes_dic[candidate_names[0]]) / (total_votes)*100),2)} %" 
-    percent_vote2 = f"{round(((candidate_name_and_votes_dic[candidate_names[1]]) / (total_votes)*100),2)} %"
-    percent_vote3 = f"{round(((candidate_name_and_votes_dic[candidate_names[2]]) / (total_votes)*100),2)} %"
-    percent_vote4 = f"{round(((candidate_name_and_votes_dic[candidate_names[3]]) / (total_votes)*100),2)} %"
+      
+#for key in candidate_name_and_votes_dic.values():
+
+#   if key in candidate_name_and_votes_dic
+#        candidate_name_and_votes_dic.append()
+
+#candidate_name_votes_percent_dic = candidate_name_and_votes_dic.update((x, y / (total_votes)*100)) for x, y in candidate_name_and_votes_dic.items())
+
+
+#Percentage of votes each candidate received
+percent_vote1 = f"{round(((candidate_name_and_votes_dic[candidate_names[0]]) / (total_votes)*100),2)} %" 
+percent_vote2 = f"{round(((candidate_name_and_votes_dic[candidate_names[1]]) / (total_votes)*100),2)} %"
+percent_vote3 = f"{round(((candidate_name_and_votes_dic[candidate_names[2]]) / (total_votes)*100),2)} %"
+percent_vote4 = f"{round(((candidate_name_and_votes_dic[candidate_names[3]]) / (total_votes)*100),2)} %"
 
 
 #Append current dictionary to have a list for values (name, percent and total votes)
-candidate_name_votes_percent_dic[candidate_names[0]] = candidate_names[0], percent_vote1, f"({candidate_name_and_votes_dic[candidate_names[0]]})"
-candidate_name_votes_percent_dic[candidate_names[1]] = candidate_names[1], percent_vote2, f"({candidate_name_and_votes_dic[candidate_names[1]]})"
-candidate_name_votes_percent_dic[candidate_names[2]] = candidate_names[2], percent_vote3, f"({candidate_name_and_votes_dic[candidate_names[2]]})"
-candidate_name_votes_percent_dic[candidate_names[3]] = candidate_names[3], percent_vote4, f"({candidate_name_and_votes_dic[candidate_names[3]]})"
+candidate1 = candidate_names[0], percent_vote1, f"({candidate_name_and_votes_dic[candidate_names[0]]})"
+candidate2 = candidate_names[1], percent_vote2, f"({candidate_name_and_votes_dic[candidate_names[1]]})"
+candidate3 = candidate_names[2], percent_vote3, f"({candidate_name_and_votes_dic[candidate_names[2]]})"
+candidate4 = candidate_names[3], percent_vote4, f"({candidate_name_and_votes_dic[candidate_names[3]]})"
 
-
-#assign each candidate its own dictionary for easier printing
-candidate1 = candidate_name_votes_percent_dic[candidate_names[0]] 
-candidate2 = candidate_name_votes_percent_dic[candidate_names[1]] 
-candidate3 = candidate_name_votes_percent_dic[candidate_names[2]] 
-candidate4 = candidate_name_votes_percent_dic[candidate_names[3]]
-
+#candidate_name_votes_percent_dic = candidate1, candidate2, candidate3, candidate4   
+#print(candidate_name_votes_percent_dic)
 
 #Winner of popular vote
 winner_name = max(candidate_name_and_votes_dic.items(), key = operator.itemgetter(1))[0]
-
 
 
 output = (
@@ -76,7 +78,7 @@ output = (
     f"Winner: {winner_name} \n"
     f"----------------------------------"
 )
-
+print(candidate1)
 #for i in candidate_name_votes_percent_dic.keys():
 #    print('{} : {}\n'.format(i,candidate_name_votes_percent_dic.get(i)))
 
