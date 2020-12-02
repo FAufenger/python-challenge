@@ -21,11 +21,12 @@ with open(csvpath) as csvfile:
         #Total number of votes cast
         total_votes += 1
 
-        #List of all unique canadites and total votes for each candidate
+        #List of all unique canadites and start dictionary
         if row[2] not in candidate_names:
             candidate_names.append(row[2])
             candidate_votes[row[2]] = 0
-            
+
+        #Add total of votes per candidate in dictionary
         candidate_votes[row[2]] += 1
 
     #Percentage of votes each candidate received
@@ -55,8 +56,8 @@ output = (
     f"----------------------------------"
 )
 
+
 with open("analysis/output.txt", "w") as txt_file:
     txt_file.write(output)
 
-    for candidate in candidate_votes
-        
+    #for candidate in candidate_votes
