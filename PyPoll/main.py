@@ -10,6 +10,10 @@ candidate_names = []
 percent_votes = 0
 candidate_name_and_votes_dic = {}
 candidate_name_votes_percent_dic = {}
+candidate1 = {}
+candidate2 = {}
+candidate3 = {}
+candidate4 = {}
 winner = str() #or ""
 winner_name = []
 
@@ -40,13 +44,18 @@ with open(csvpath) as csvfile:
     percent_vote4 = f"{round(((candidate_name_and_votes_dic[candidate_names[3]]) / (total_votes)*100),2)} %"
 
 
+#Append current dictionary to have a list for values (name, percent and total votes)
+candidate_name_votes_percent_dic[candidate_names[0]] = candidate_names[0], percent_vote1, f"({candidate_name_and_votes_dic[candidate_names[0]]})"
+candidate_name_votes_percent_dic[candidate_names[1]] = candidate_names[1], percent_vote2, f"({candidate_name_and_votes_dic[candidate_names[1]]})"
+candidate_name_votes_percent_dic[candidate_names[2]] = candidate_names[2], percent_vote3, f"({candidate_name_and_votes_dic[candidate_names[2]]})"
+candidate_name_votes_percent_dic[candidate_names[3]] = candidate_names[3], percent_vote4, f"({candidate_name_and_votes_dic[candidate_names[3]]})"
 
-#Append current dictionary to have a list for values
-#More compact storage and easire to print
-candidate_name_votes_percent_dic[candidate_names[0]] = [percent_vote1, candidate_name_and_votes_dic[candidate_names[0]]]
-candidate_name_votes_percent_dic[candidate_names[1]] = [percent_vote2, candidate_name_and_votes_dic[candidate_names[1]]]
-candidate_name_votes_percent_dic[candidate_names[2]] = [percent_vote3, candidate_name_and_votes_dic[candidate_names[2]]]
-candidate_name_votes_percent_dic[candidate_names[3]] = [percent_vote4, candidate_name_and_votes_dic[candidate_names[3]]]
+
+#assign each candidate its own dictionary for easier printing
+candidate1 = candidate_name_votes_percent_dic[candidate_names[0]] 
+candidate2 = candidate_name_votes_percent_dic[candidate_names[1]] 
+candidate3 = candidate_name_votes_percent_dic[candidate_names[2]] 
+candidate4 = candidate_name_votes_percent_dic[candidate_names[3]]
 
 
 #Winner of popular vote
@@ -59,7 +68,10 @@ output = (
     f"----------------------------------\n"
     f"Total Votes: {total_votes}\n"
     f"----------------------------------\n"
-    f"{candidate_name_votes_percent_dic}\n"
+    f"{candidate1}\n"
+    f"{candidate2}\n"
+    f"{candidate3}\n"
+    f"{candidate4}\n"
     f"----------------------------------\n"    
     f"Winner: {winner_name} \n"
     f"----------------------------------"
