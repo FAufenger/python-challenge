@@ -1,7 +1,7 @@
 # Modules
 import os
 import csv
-
+import operator
 
 #set path for the file
 csvpath = os.path.join("resources", "pypoll_election_data.csv")
@@ -9,7 +9,9 @@ total_votes = 0
 candidate_names = []
 percent_votes = 0
 candidate_name_and_votes_dic = {}
+candidate_name_votes_percent_dic = {}
 winner = str() #or ""
+winner_name = []
 
 with open(csvpath) as csvfile: 
     csvreader = csv.reader(csvfile, delimiter=",")
@@ -33,16 +35,23 @@ with open(csvpath) as csvfile:
 
     #Percentage of votes each candidate received
     percent_vote1 = f"{round(((candidate_name_and_votes_dic[candidate_names[0]]) / (total_votes)*100),2)} %" 
-    percent_vote2 = round(((candidate_name_and_votes_dic[candidate_names[1]]) / (total_votes)*100),2)
-    percent_vote3 = round(((candidate_name_and_votes_dic[candidate_names[2]]) / (total_votes)*100),2)
-    percent_vote4 = round(((candidate_name_and_votes_dic[candidate_names[3]]) / (total_votes)*100),2)
+    percent_vote2 = f"{round(((candidate_name_and_votes_dic[candidate_names[1]]) / (total_votes)*100),2)} %"
+    percent_vote3 = f"{round(((candidate_name_and_votes_dic[candidate_names[2]]) / (total_votes)*100),2)} %"
+    percent_vote4 = f"{round(((candidate_name_and_votes_dic[candidate_names[3]]) / (total_votes)*100),2)} %"
 
 
-candidate_name_and_votes_dic[candidate_names[0]] = [percent_vote1, candidate_name_and_votes_dic[candidate_names[0]]]
 
-    
-    #Winner of popular vote
-    #winner = #candidate votes > other candidates then
+#Append current dictionary to have a list for values
+#More compact storage and easire to print
+candidate_name_votes_percent_dic[candidate_names[0]] = [percent_vote1, candidate_name_and_votes_dic[candidate_names[0]]]
+candidate_name_votes_percent_dic[candidate_names[1]] = [percent_vote2, candidate_name_and_votes_dic[candidate_names[1]]]
+candidate_name_votes_percent_dic[candidate_names[2]] = [percent_vote3, candidate_name_and_votes_dic[candidate_names[2]]]
+candidate_name_votes_percent_dic[candidate_names[3]] = [percent_vote4, candidate_name_and_votes_dic[candidate_names[3]]]
+
+
+#Winner of popular vote
+winner_name = max(candidate_name_and_votes_dic.items(), key = operator.itemgetter(1))[0]
+
 
 
 output = (
@@ -50,15 +59,11 @@ output = (
     f"----------------------------------\n"
     f"Total Votes: {total_votes}\n"
     f"----------------------------------\n"
-    f"{candidate_name_and_votes_dic}\n"
-    f"----------------------------------\n"
-    f"{percent_vote1}%\n"
-    f"{percent_vote2}%\n"
-    f"{percent_vote3}%\n"
-    f"{percent_vote4}%\n"
-    
- #    f"winner: {winner}\n"
+    f"{candidate_name_votes_percent_dic}\n"
+    f"----------------------------------\n"    
+    f"Winner: {winner_name} \n"
     f"----------------------------------"
+    
 )
 
 
