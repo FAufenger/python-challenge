@@ -9,10 +9,6 @@ csvpath = os.path.join("resources", "pypoll_election_data.csv")
 total_votes = 0
 candidate_names = []
 candidate_name_and_votes_dic = {}
-candidate1 = []
-candidate2 = []
-candidate3 = []
-candidate4 = []
 winner_name = []
 candidate_name_and_percent_dic = {}
 combined_values = defaultdict(list)
@@ -55,27 +51,31 @@ for i in (candidate_name_and_percent_dic, candidate_name_and_votes_dic):
 winner_name = max(candidate_name_and_votes_dic.items(), key = operator.itemgetter(1))[0]
 
 
+
 output = (
     f"Election Results\n"
     f"----------------------------------\n"
     f"Total Votes: {total_votes}\n"
-    f"----------------------------------\n"
-    f"{combined_values}\n"
-    f"----------------------------------\n"    
+    f"----------------------------------\n")
+
+output2 = ('\n'.join("{}: {}".format(k, v) for k, v in combined_values.items()))
+
+
+output3 = (
+    f"\n----------------------------------\n"    
     f"Winner: {winner_name} \n"
-    f"----------------------------------"
+    f"----------------------------------\n"
 )
 
-
 #Optinal way to attempt to combine dictionaries
+# for i in combined_values.keys():
+#     output2 = ('{} : {}\n'.format(i,combined_values.get(i)))
+# print(output2)
 
 
-#Other ways to print dictionary w/0 "" and , 
-        #for i in candidate_name_votes_percent_dic.keys():
-            #print('{} : {}\n'.format(i,candidate_name_votes_percent_dic.get(i)))
 
-        #print('\n'.join("{}: {}".format(k, v) for k, v in candidate_name_votes_percent_dic.items()))
-
+       
 with open("analysis/output.txt", "w") as txt_file:
     txt_file.write(output)
-
+    txt_file.write(output2)
+    txt_file.write(output3)
