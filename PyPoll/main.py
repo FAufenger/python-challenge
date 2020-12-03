@@ -2,15 +2,14 @@
 import os
 import csv
 import operator
-from collections import defaultdict
+
 
 #set path for the file
 csvpath = os.path.join("resources", "pypoll_election_data.csv")
 total_votes = 0
 candidate_names = []
 candidate_name_and_votes_dic = {}
-candidate_name_and_percent_dic = {}
-combined_values = defaultdict(list)
+summary_candidates = ""
 winner_name = []
 
 
@@ -33,17 +32,9 @@ with open(csvpath) as csvfile:
         #Add total of votes to dictionary keys (unique candidate names)
         candidate_name_and_votes_dic[candidate_data[2]] += 1
         
-#make a new dictionary that is a copy of the names and votes
-candidate_name_and_percent_dic = dict(candidate_name_and_votes_dic)
-
-#modify new dictionaries vote total into percentage
-for key in candidate_name_and_percent_dic: 
-    candidate_name_and_percent_dic[key] = f"{round(((candidate_name_and_percent_dic[key] / (total_votes))*100),2)} %" 
-
-#combine both dictionaries
-for i in (candidate_name_and_percent_dic, candidate_name_and_votes_dic):
-    for key, value in i.items():
-        combined_values[key].append(value)
+#combine all variables into string to present in output
+for key, value in candidate_name_and_votes_dic.items():
+    summary_candidates += f"{key}: {round(((value/total_votes) *100),2)}% ({value})\n"
 
 
 #Winner of popular vote
@@ -51,22 +42,18 @@ winner_name = max(candidate_name_and_votes_dic.items(), key = operator.itemgette
 
 
 #Outputs to be printed in txt file in analysis folder
-output1 = (
+output = (
     f"Election Results\n"
     f"----------------------------------\n"
     f"Total Votes: {total_votes}\n"
-    f"----------------------------------\n")
-
-output2 = ('\n'.join("{}: {}".format(key, value) for key, value in combined_values.items()))
-
-output3 = (
-    f"\n----------------------------------\n"    
+    f"----------------------------------\n"
+    f"{summary_candidates}"
+    f"----------------------------------\n"    
     f"Winner: {winner_name} \n"
-    f"----------------------------------\n")
+    f"----------------------------------")
 
 
 #print all outputs in txt file im analysis folder      
 with open("analysis/output.txt", "w") as txt_file:
-    txt_file.write(output1)
-    txt_file.write(output2)
-    txt_file.write(output3)
+    txt_file.write(output)
+
