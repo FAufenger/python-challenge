@@ -9,9 +9,9 @@ csvpath = os.path.join("resources", "pypoll_election_data.csv")
 total_votes = 0
 candidate_names = []
 candidate_name_and_votes_dic = {}
-winner_name = []
 candidate_name_and_percent_dic = {}
 combined_values = defaultdict(list)
+winner_name = []
 #candidate_name_votes_percent_dic = {}
 #percent_votes = {}
 
@@ -34,32 +34,31 @@ with open(csvpath) as csvfile:
         #Add total of votes to dictionary keys (unique candidate names)
         candidate_name_and_votes_dic[candidate_data[2]] += 1
         
-
+#make a new dictionary that is a copy of the names and votes
 candidate_name_and_percent_dic = dict(candidate_name_and_votes_dic)
 
+#modify new dictionaries vote total into percentage
 for key in candidate_name_and_percent_dic: 
     candidate_name_and_percent_dic[key] = f"{round(((candidate_name_and_percent_dic[key] / (total_votes))*100),2)} %" 
 
+#combine both dictionaries
 for i in (candidate_name_and_percent_dic, candidate_name_and_votes_dic):
     for key, value in i.items():
         combined_values[key].append(value)
 
-#candidate_name_votes_percent_dic = candidate1, candidate2, candidate3, candidate4   
-#print(candidate_name_votes_percent_dic)
 
 #Winner of popular vote
 winner_name = max(candidate_name_and_votes_dic.items(), key = operator.itemgetter(1))[0]
 
 
-
+#Outputs to be printed in txt file in analysis folder
 output = (
     f"Election Results\n"
     f"----------------------------------\n"
     f"Total Votes: {total_votes}\n"
     f"----------------------------------\n")
 
-output2 = ('\n'.join("{}: {}".format(k, v) for k, v in combined_values.items()))
-
+output2 = ('\n'.join("{}: {}".format(key, value) for key, value in combined_values.items()))
 
 output3 = (
     f"\n----------------------------------\n"    
@@ -67,14 +66,7 @@ output3 = (
     f"----------------------------------\n"
 )
 
-#Optinal way to attempt to combine dictionaries
-# for i in combined_values.keys():
-#     output2 = ('{} : {}\n'.format(i,combined_values.get(i)))
-# print(output2)
-
-
-
-       
+#print all outputs in txt file im analysis folder      
 with open("analysis/output.txt", "w") as txt_file:
     txt_file.write(output)
     txt_file.write(output2)
