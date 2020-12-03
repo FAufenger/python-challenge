@@ -31,11 +31,12 @@ with open(csvpath) as csvfile:
 
         #Add total of votes to dictionary keys (unique candidate names)
         candidate_name_and_votes_dic[candidate_data[2]] += 1
-        
-#combine all variables from dictionary and add in percent value
-# into string to present in output
+
+#Create for loop to get percent values and  
+#combine all variables from dictionary into string to present in output
 for key, value in candidate_name_and_votes_dic.items():
-    summary_candidates += f"{key}: {round(((value/total_votes) *100),2)}% ({value})\n"
+    vote_percentage = ((value/total_votes) *100)
+    summary_candidates += f"{key}: {vote_percentage:.3f}% ({value})\n"
 
 
 #Winner of popular vote
