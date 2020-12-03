@@ -22,11 +22,11 @@ with open(csvpath) as csvfile:
     for candidate_data in csvreader:
 
         #Total number of votes cast
-        #Adds total of all rows (-header due to above code)
+        #Adds total of all rows (less the header due to above code)
         total_votes += 1
 
         #List of all unique canadites 
-        #start dictionary(set keys to zero)
+        #start dictionary(set values to zero)
         if candidate_data[2] not in candidate_names:
             candidate_names.append(candidate_data[2])
             candidate_name_and_votes_dic[candidate_data[2]] = 0
