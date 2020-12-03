@@ -57,5 +57,8 @@ output = (
     f"Greatest Decrease in Profits: {greatest_dec['month']}  (${greatest_dec['value']})\n"
 )
 
+#print outputs to terminal
+print(output)
+
 with open("analysis/output.txt", "w") as txt_file:
     txt_file.write(output)

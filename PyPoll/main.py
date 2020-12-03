@@ -53,6 +53,8 @@ output = (
     f"Winner: {winner_name} \n"
     f"----------------------------------")
 
+#print results to terminal
+print(output)
 
 #print all outputs in txt file im analysis folder      
 with open("analysis/output.txt", "w") as txt_file:
