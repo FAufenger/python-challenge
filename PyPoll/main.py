@@ -12,8 +12,7 @@ candidate_name_and_votes_dic = {}
 candidate_name_and_percent_dic = {}
 combined_values = defaultdict(list)
 winner_name = []
-#candidate_name_votes_percent_dic = {}
-#percent_votes = {}
+
 
 with open(csvpath) as csvfile: 
     csvreader = csv.reader(csvfile, delimiter=",")
