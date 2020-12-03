@@ -52,7 +52,7 @@ winner_name = max(candidate_name_and_votes_dic.items(), key = operator.itemgette
 
 
 #Outputs to be printed in txt file in analysis folder
-output = (
+output1 = (
     f"Election Results\n"
     f"----------------------------------\n"
     f"Total Votes: {total_votes}\n"
@@ -63,11 +63,11 @@ output2 = ('\n'.join("{}: {}".format(key, value) for key, value in combined_valu
 output3 = (
     f"\n----------------------------------\n"    
     f"Winner: {winner_name} \n"
-    f"----------------------------------\n"
-)
+    f"----------------------------------\n")
+
 
 #print all outputs in txt file im analysis folder      
 with open("analysis/output.txt", "w") as txt_file:
-    txt_file.write(output)
+    txt_file.write(output1)
     txt_file.write(output2)
     txt_file.write(output3)
